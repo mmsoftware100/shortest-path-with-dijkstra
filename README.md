@@ -18,6 +18,11 @@ Graph ကို Python မှာ တည်ဆောက်ရန်။
 - [ ] Nearest API
 
 
+Place နဲ့
+Graph ကို ခွဲထားရမယ်။
+သီးသန့် data source အနေနဲ့။
+
+
 ## Refactor
 
 - [ ] Data Source တစ်ခုတည်း ထားရန်။
