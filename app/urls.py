@@ -6,5 +6,5 @@ urlpatterns = [
     # path function accept two parameter
     # first parameter is url path
     # second parameter is function name 
-    path("hello/", views.index),
+    path("", views.index),
 ]
