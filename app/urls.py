@@ -9,4 +9,5 @@ urlpatterns = [
     path("", views.index),
     path("listing", views.listing),
     path("graph", views.graph),
+    path("calculate", views.calculate),
 ]

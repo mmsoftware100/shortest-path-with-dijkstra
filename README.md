@@ -13,9 +13,15 @@ Graph ကို Python မှာ တည်ဆောက်ရန်။
 
 
 - [x] HTML
-- [ ] Basic APIs
+- [x] Basic APIs
+- [x] Business API (shortest path, neares place )
+- [ ] Nearest API
 
+
+## Refactor
+
+- [ ] Data Source တစ်ခုတည်း ထားရန်။
 ### Static API (၂) ခု။
 
 
-API ဘက်က json string ပြန်ပေးနိုင်ရင် မဆိုးဘူး။
+- [x] API ဘက်က json string ပြန်ပေးနိုင်ရင် မဆိုးဘူး။

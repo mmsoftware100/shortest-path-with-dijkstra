@@ -67,7 +67,7 @@ var greenIcon = L.icon({
 });
 
 var map_marker_icon = L.icon({
-    iconUrl: 'images/map_marker.png',
+    iconUrl: './static/images/map_marker.png',
 
     iconSize: [38, 95], // size of the icon
     shadowSize: [50, 64], // size of the shadow
@@ -540,7 +540,7 @@ function findShortestPath(source_id, destination_id) {
     var requested_data = { operation: "shortest_path", source_id: source_id, destination_id: destination_id };
     $.ajax({
             method: "GET",
-            url: "./server.php",
+            url: "./calculate",
             data: requested_data
         })
         .done(function(msg) {
