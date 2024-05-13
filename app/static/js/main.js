@@ -516,7 +516,7 @@ $.ajax({
     .done(function(msg) {
         // validate returned data => success or display error message
         console.log("places get response is : " + msg);
-        var returned_data = msg; // JSON.parse(msg);
+        var returned_data = JSON.parse(msg);
         if (returned_data.status == "success") {
             var places = returned_data.places;
             var str = "";
