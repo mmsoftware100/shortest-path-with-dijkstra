@@ -164,7 +164,7 @@ $("#draw_graph_button").on('click', function() {
     $.ajax({
             method: "GET",
             //url: "http://" + localhost_ip + "/google_map/server.php",
-            url: "./server.php",
+            url: "./graph",
             data: requested_data
         })
         .done(function(msg) {
