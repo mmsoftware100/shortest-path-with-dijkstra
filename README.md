@@ -12,5 +12,8 @@ python manage.py runserver
 Graph ကို Python မှာ တည်ဆောက်ရန်။
 
 
-- [ ] HTML
+- [x] HTML
 - [ ] Basic APIs
+
+### Static API (၂) ခု။
+

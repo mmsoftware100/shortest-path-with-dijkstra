@@ -7,4 +7,5 @@ urlpatterns = [
     # first parameter is url path
     # second parameter is function name 
     path("", views.index),
+    path("listing", views.listing),
 ]

@@ -1,0 +1,121 @@
+<html>
+<head>
+	<title>
+		Distance
+	</title>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td> Source Lat </td>
+		<td><input type='number' id='source_lat'></td>
+	</tr>
+	<tr>
+		<td> Source Long </td>
+		<td><input type='number' id='source_long'></td>
+	</tr>
+	<tr>
+		<td> Destination Lat </td>
+		<td><input type='number' id='destination_lat'></td>
+	</tr>
+	<tr>
+		<td> Destination Long </td>
+		<td><input type='number' id='destination_long'></td>
+	</tr>
+
+	<br>
+	<tr>
+		<td><button id='calculate'>Calculate Distance</button></td>
+	</tr>
+</table>
+
+<h2>Distance is : <span id="answer"></span> KM</h2>
+ <script src="js/jquery.js"></script>
+
+<script>
+	//alert("ok");
+/*
+
+	function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement function
+    var R = 6378.137; // Radius of earth in KM
+    var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+    var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    return d * 1000; // meters
+}
+
+*/
+$("#calculate").on('click',function(){
+
+	// we need to diffence between lat and long
+
+	var source_lat = $("#source_lat").val();
+	var source_long = $("#source_long").val();
+
+	var destination_lat = $("#destination_lat").val();
+	var destination_long = $("#destination_long").val();
+	var distance = getDistanceFromLatLonInKm(source_lat,source_long, destination_lat, destination_long);
+	console.log(distance);
+	$("#answer").text(distance);
+
+	/*
+	//console.log("calculate is ");
+	var distance_meter = measure($("#source_lat").val(),$("#source_long").val(),$("#destination_lat").val(),$("#destination_lat").val());
+	console.log("dist is "+distance_meter);
+	$("#answer").val(distance_meter);
+
+	// we need to diffence between lat and long
+
+	var source_lat = $("#source_lat").val();
+	var source_long = $("#source_long").val();
+
+	var destination_lat = $("#destination_lat").val();
+	var destination_long = $("#destination_long").val();
+
+	var lat_diff = source_lat - destination_long;
+	if(lat_diff < 0 ) lat_diff = lat_diff * (-1);
+
+	var long_diff = source_long - destination_long;
+	if(long_diff < 0 ) long_diff = long_diff * (-1);
+
+	lat_diff = 111.32 * lat_diff;
+	long_diff = 40075 * Math.cos( long_diff ) / 360 ;
+
+	var ac_square = (lat_diff * lat_diff ) + (long_diff * long_diff);
+	ac_square = Math.sqrt(ac_square);
+
+	console.log("it is distance in kilometer "+ac_square);
+	*/
+
+
+
+});
+
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
+</script>
+
+
+</body>
+</html>

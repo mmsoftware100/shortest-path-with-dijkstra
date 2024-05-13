@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <title>Sandar Map</title>
+    <link rel="stylesheet" href="css/jquery.loadingModal.min.css">
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+
+    <div id="mapid"></div>
+
+
+
+    <div>
+        <label for="source">Source</label>
+        <select id="source">
+				<option>-- Select Source --</option>
+			</select>
+        <label for="destination">Destination</label>
+        <select id="destination">
+				<option>-- Select Source --</option>
+			</select>
+        <button id="find_shortest_path">Find Shortest Path</button>
+        <button id="draw_graph_button">Draw Graph</button>
+
+        <!-- this is button and categories  -->
+        <!-- 		
+        <button id="categories_button">Categories</button>
+        <button id="draw_graph_button">Draw Graph</button>
+        <h2>Categories</h2>
+        <ul id="cat_list">
+            <li>cat 1</li>
+        </ul>
+        <hr>
+        <h2>Places</h2>
+        <ul id="place_list">
+            <li>place 1</li>
+        </ul>
+        <hr> -->
+
+        <h2>Shortest Path</h2>
+        <span id="total_distance_span">Total distancs</span> meters
+        <ul id="shortest_path_list">
+        </ul>
+
+    </div>
+    <hr>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/jquery.loadingModal.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
