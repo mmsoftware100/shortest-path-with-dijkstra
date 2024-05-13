@@ -26,6 +26,8 @@ Graph ကို ခွဲထားရမယ်။
 ## Refactor
 
 - [ ] Data Source တစ်ခုတည်း ထားရန်။
+- [ ] Places, Link and Graph
+
 ### Static API (၂) ခု။
 
 
