@@ -10,4 +10,11 @@ urlpatterns = [
     path("listing", views.listing),
     path("graph", views.graph),
     path("calculate", views.calculate),
+
+    path("about", views.about_page),
+    path("home", views.home_page),
+    path("places", views.places_page),
+    path("result", views.result_page),
+    path("search", views.search_page),
+    path("start", views.start_page),
 ]
