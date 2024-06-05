@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Page</title>
-  </head>
-  <body>
-    <!-- places dropdown -->
-    <select>
-      <option value="actual value 1">Display Text 1</option>
-      <option value="actual value 2">Display Text 2</option>
-      <option value="actual value 3">Display Text 3</option>
-    </select>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map with Search Box</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        .leaflet-control-geocoder-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .leaflet-control-geocoder-icon {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
 
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        // Initialize the map and set the view to a specific location
+        const map = L.map('map').setView([51.505, -0.09], 13); // Example coordinates (London)
 
-    <!-- map -->
-  </body>
+        // Add a tile layer to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add the geocoder control to the map
+        const geocoder = L.Control.geocoder({
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            const bbox = e.geocode.bbox;
+            const poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        }).addTo(map);
+
+        // Add an overlay search box
+        const searchBox = L.control({position: 'topleft'});
+        searchBox.onAdd = function(map) {
+            const div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
+            const form = L.DomUtil.create('form', 'leaflet-control-geocoder-form', div);
+            const input = L.DomUtil.create('input', 'leaflet-control-geocoder-input', form);
+            input.type = 'text';
+            input.placeholder = 'Search for places...';
+
+            L.DomEvent.addListener(form, 'submit', function(e) {
+                L.DomEvent.preventDefault(e);
+                geocoder.options.geocoder.geocode(input.value, function(results) {
+                    const result = results[0];
+                    if (result) {
+                        map.setView(result.center, 13);
+                        L.marker(result.center).addTo(map).bindPopup(result.name || result.html || result.text).openPopup();
+                    }
+                });
+            });
+
+            return div;
+        };
+        searchBox.addTo(map);
+    </script>
+</body>
 </html>

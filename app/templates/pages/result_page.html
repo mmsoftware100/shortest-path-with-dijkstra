@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result Page</title>
+    <title>Shortest Path from Point A to Point B</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <!-- map -->
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script>
+        // Initialize the map and set the view to a specific location
+        const map = L.map('map').setView([51.505, -0.09], 13); // Example coordinates (London)
+
+        // Add a tile layer to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Define coordinates for Point A and Point B
+        const pointA = L.latLng(51.505, -0.09); // Example coordinates (London)
+        const pointB = L.latLng(51.515, -0.1);  // Example coordinates (London)
+
+        // Add markers for Point A and Point B
+        L.marker(pointA).addTo(map).bindPopup('Point A').openPopup();
+        L.marker(pointB).addTo(map).bindPopup('Point B').openPopup();
+
+        // Use Leaflet Routing Machine to find and display the shortest path from Point A to Point B
+        L.Routing.control({
+            waypoints: [pointA, pointB],
+            routeWhileDragging: true,
+            showAlternatives: true,
+            altLineOptions: { styles: [{ color: 'black', opacity: 0.15, weight: 9 }] },
+            createMarker: function(i, waypoint, n) {
+                var markerOptions = {
+                    draggable: true
+                };
+                return L.marker(waypoint.latLng, markerOptions)
+                    .bindPopup(i === 0 ? 'Point A' : i === n - 1 ? 'Point B' : `Waypoint ${i + 1}`);
+            }
+        }).addTo(map);
+    </script>
 </body>
 </html>

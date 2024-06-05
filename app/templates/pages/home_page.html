@@ -1,28 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
-  <body>
-    <!-- header -->
-    <img src="" />
-    <h2>Main Title</h2>
-    <img src="" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Shortest Path Using Dijkstra's Algorithm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: #ffffff;
+            padding: 10px 0;
+            border-bottom: #e8491d 3px solid;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header img {
+            height: 50px;
+        }
+        header .title {
+            flex-grow: 1;
+            text-align: center;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #cccccc;
+            font-weight: bold;
+        }
+        #showcase {
+            min-height: 400px;
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding-top: 100px;
+        }
+        #showcase h1 {
+            margin-top: 0;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+        #showcase p {
+            font-size: 20px;
+        }
+        #main {
+            padding: 20px;
+            background: #ffffff;
+        }
+        #main h2 {
+            color: #35424a;
+        }
+        footer {
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="path_to_university_logo.png" alt="University Logo">
+            <div class="title">
+                <h1>My Thesis: Shortest Path Using Dijkstra</h1>
+            </div>
+            <img src="path_to_major_logo.png" alt="Major Logo">
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Algorithm</a></li>
+                <li><a href="#">Implementation</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- dropdwon  bar -->
-    <select>
-      <option value="actual value 1">Display Text 1</option>
-      <option value="actual value 2">Display Text 2</option>
-      <option value="actual value 3">Display Text 3</option>
-    </select>
+    <section id="showcase">
+        <div class="container">
+            <h1>Welcome to My Thesis Project</h1>
+            <p>Exploring the Shortest Path Problem Using Dijkstra's Algorithm</p>
+        </div>
+    </section>
 
-    <!-- nav links -->
-    <a href="#" />Home</a>
-    <a href="#" />Search</a>
-    <a href="#" />Places</a>
-    <a href="#" />About</a>
+    <div id="main" class="container">
+        <section id="home">
+            <h2>Introduction</h2>
+            <p>
+                Welcome to the homepage of my thesis project on finding the shortest path using Dijkstra's algorithm.
+                This project is a comprehensive study on the application of Dijkstra's algorithm in solving the shortest path problem
+                in various types of graphs.
+            </p>
+            <p>
+                The shortest path problem is a fundamental problem in computer science and operations research, with numerous applications
+                in network routing, geographic information systems, and urban planning. Dijkstra's algorithm, introduced by Edsger W. Dijkstra
+                in 1956, provides an efficient solution to this problem.
+            </p>
+            <p>
+                In this thesis, we will explore the theoretical foundations of Dijkstra's algorithm, analyze its computational complexity,
+                and demonstrate its implementation through various practical examples. We will also discuss potential optimizations and
+                variations of the algorithm to address specific real-world challenges.
+            </p>
+        </section>
+    </div>
 
-  </body>
+    <footer>
+        <p>© 2024 Your Name. All Rights Reserved.</p>
+    </footer>
+</body>
 </html>

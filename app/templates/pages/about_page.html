@@ -1,13 +1,141 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
+    <title>About My Thesis: Shortest Path Using Dijkstra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #cccccc;
+            font-weight: bold;
+        }
+        #showcase {
+            min-height: 400px;
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding-top: 100px;
+        }
+        #showcase h1 {
+            margin-top: 0;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+        #showcase p {
+            font-size: 20px;
+        }
+        #main {
+            padding: 20px;
+            background: #ffffff;
+        }
+        #main h2 {
+            color: #35424a;
+        }
+        footer {
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Title</h2>
-    <p>Description</p>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>My Thesis: Shortest Path Using Dijkstra</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="#">About</a></li>
+                    <li><a href="#">Algorithm</a></li>
+                    <li><a href="#">Implementation</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>Understanding Dijkstra's Algorithm</h1>
+            <p>Finding the Shortest Path in Graphs</p>
+        </div>
+    </section>
+
+    <div id="main" class="container">
+        <section id="about">
+            <h2>About My Thesis</h2>
+            <p>
+                Welcome to the "About" page of my thesis project on finding the shortest path using Dijkstra's algorithm.
+                This thesis explores the theoretical underpinnings and practical applications of Dijkstra's algorithm in solving
+                the shortest path problem in graphs.
+            </p>
+            <p>
+                Dijkstra's algorithm, named after Dutch computer scientist Edsger W. Dijkstra, is a popular algorithm used in
+                network routing protocols and geographic mapping services to determine the shortest path between nodes in a
+                graph. The algorithm works by iteratively selecting the node with the smallest tentative distance, updating
+                the distances of its neighboring nodes, and repeating the process until the shortest path to the destination
+                node is found.
+            </p>
+            <p>
+                In this thesis, we delve into the details of how Dijkstra's algorithm functions, its computational complexity,
+                and its applications in real-world scenarios. We also discuss various optimizations and modifications to the
+                algorithm that can enhance its efficiency and applicability to larger and more complex graphs.
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Your Name. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
