@@ -1,6 +1,6 @@
 places = [
     {"id": "1", "name": "Kyakt Taung Pagoda", "cat_id": "1",
-        "lat": "22.014296", "long": "96.447091"},
+        "lat": "22.014296", "long": "96.447091", "image_url" : "test.png"},
     {"id": "2", "name": "Police Station", "cat_id": "8",
         "lat": "22.014722", "long": "96.450895"},
     {"id": "3", "name": "Famous Hotel", "cat_id": "2",
