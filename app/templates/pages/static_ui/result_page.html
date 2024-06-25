@@ -1,1 +1,260 @@
-result_page
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/jquery.loadingModal.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" />
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        width: 100%;
+        background-color: transparent;
+      }
+      div.main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      div.heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        background-color: red;
+      }
+
+      img.heading_image {
+        width: 100px;
+      }
+
+      div.search_bar {
+        width: 100%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-input {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+        outline: none;
+        flex: 1;
+      }
+
+      div.slide_show {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        width: 100%;
+        background-color: transparent;
+        height: 50vh;
+      }
+
+      div.place {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        border: 1px solid grey;
+        border-radius: 24px;
+        padding: 24px;
+        margin: 8px;
+        cursor: pointer;
+      }
+      div.place:hover {
+        background-color: beige;
+      }
+      img.place_image {
+        width: 100px;
+        border-radius: 24px;
+      }
+
+      div.footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      div.nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid;
+      }
+      img.icon {
+        width: 72px;
+      }
+      span.nav_title {
+        padding: 16px;
+      }
+
+      #map {
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="map">
+        <!-- map along with 4 markers -->
+        <div id="map"></div>
+      </div>
+
+      <div class="footer">
+        <!-- 4 main navigation section -->
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/home">Home</a></span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/search">Search</a></span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/places">Places</a></span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/about">About</a></span>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/leaflet.js' %}"></script>
+    <script src="{% static 'js/jquery.loadingModal.min.js' %}"></script>
+    <script>
+      // add div.place on click listener for detail page
+      // Select all elements with the class 'place'
+      const places = document.querySelectorAll(".place");
+      // Iterate over each button and attach an event listener
+      places.forEach((place) => {
+        place.addEventListener("click", function () {
+          // alert(`You clicked ${this.textContent}`);
+          window.location.href = "/result"; // Replace with the URL of the next pag
+        });
+      });
+
+      var map_marker_icon = L.icon({
+        iconUrl: "./static/images/map_marker.png",
+
+        iconSize: [38, 95], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62], // the same for the shadow
+        popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      });
+
+      // Initialize the map and set its view to the center point
+      var map = L.map("map").setView([40.7128, -74.006], 13); // Coordinates of New York City
+
+      // Add OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+      }).addTo(map);
+
+      // Add the center marker
+      var centerMarker = L.marker([40.7128, -74.006],{ icon: map_marker_icon }).addTo(map);
+      centerMarker.bindPopup("<b>Center Marker</b><br>New York City");
+
+      // Add the circle with a 3-mile radius
+      var radiusInMeters = 3 * 1609.34; // 3 miles in meters
+      var circle = L.circle([40.7128, -74.006], {
+        color: "blue",
+        fillColor: "blue",
+        fillOpacity: 0.2,
+        radius: radiusInMeters,
+      }).addTo(map);
+
+      // Coordinates for additional markers within the 3-mile radius
+      var additionalMarkers = [
+        {
+          coords: [40.7308, -73.9973],
+          info: "Marker 1 Info: Near Washington Square Park",
+        }, // Marker 1
+        {
+          coords: [40.7122, -73.9793],
+          info: "Marker 2 Info: Near Brooklyn Bridge",
+        }, // Marker 2
+        {
+          coords: [40.6892, -74.0445],
+          info: "Marker 3 Info: Near Statue of Liberty",
+        }, // Marker 3
+      ];
+
+      // Add the additional markers to the map with click events to show info popups
+      additionalMarkers.forEach(function (markerData, index) {
+        var marker = L.marker(markerData.coords,{ icon: map_marker_icon }).addTo(map);
+        marker.bindPopup(
+          "<b>Marker " + (index + 1) + "</b><br>" + markerData.info
+        );
+      });
+
+      // Open the popup when the center marker is clicked
+      centerMarker.on("click", function (e) {
+        this.openPopup();
+      });
+
+      // Open the popup when additional markers are clicked
+      additionalMarkers.forEach(function (markerData, index) {
+        var marker = L.marker(markerData.coords,{ icon: map_marker_icon }).addTo(map);
+        marker.bindPopup(
+          "<b>Marker " + (index + 1) + "</b><br>" + markerData.info
+        );
+        marker.on("click", function (e) {
+          this.openPopup();
+        });
+      });
+
+      ////
+
+      //   // Initialize the map and set its view to the center point
+      //   var map = L.map("map").setView([40.7128, -74.006], 13); // Coordinates of New York City
+
+      //   // Add OpenStreetMap tiles
+      //   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      //     maxZoom: 19,
+      //   }).addTo(map);
+
+      //   // Add the center marker
+      //   var centerMarker = L.marker([40.7128, -74.006],{ icon: map_marker_icon }).addTo(map);
+      //   centerMarker
+      //     .bindPopup("<b>Center Marker</b><br>New York City")
+      //     .openPopup();
+
+      //   // Add the circle with a 3-mile radius
+      //   var radiusInMeters = 3 * 1609.34; // 3 miles in meters
+      //   var circle = L.circle([40.7128, -74.006], {
+      //     color: "blue",
+      //     fillColor: "#blue",
+      //     fillOpacity: 0.2,
+      //     radius: radiusInMeters,
+      //   }).addTo(map);
+
+      //   // Coordinates for additional markers within the 3-mile radius
+      //   var additionalMarkers = [
+      //     [40.7308, -73.9973], // Marker 1
+      //     [40.7122, -73.9793], // Marker 2
+      //     [40.6892, -74.0445], // Marker 3
+      //   ];
+
+      //   // Add the additional markers to the map
+      //   additionalMarkers.forEach(function (coords, index) {
+      //     var marker = L.marker(coords,{ icon: map_marker_icon } ).addTo(map);
+      //     marker.bindPopup("<b>Marker " + (index + 1) + "</b>");
+      //   });
+    </script>
+  </body>
+</html>
