@@ -6,7 +6,8 @@ urlpatterns = [
     # path function accept two parameter
     # first parameter is url path
     # second parameter is function name 
-    path("", views.index),
+    path("", views.splash),
+    path("index", views.index),
     path("listing", views.listing),
     path("graph", views.graph),
     path("calculate", views.calculate),

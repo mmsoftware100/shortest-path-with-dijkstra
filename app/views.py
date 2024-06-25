@@ -6,6 +6,13 @@ from django.http import HttpResponse, JsonResponse
 from app.dijkstra import Dijkstra
 
 # step 1.2 create function with request parameter
+
+# index is function name
+def splash(request):
+    # step 1.3 return content with HttpResponse
+    # return HttpResponse("Hello World")
+    return render(request, 'splash.html')
+
 # index is function name
 def index(request):
     # step 1.3 return content with HttpResponse
