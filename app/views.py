@@ -14,6 +14,14 @@ def splash(request):
     return render(request, 'splash.html')
 def static_home(request):
     return render(request, 'pages/static_ui/home_page.html')
+def static_about(request):
+    return render(request, 'pages/static_ui/about_page.html')
+def static_places(request):
+    return render(request, 'pages/static_ui/places_page.html')
+def static_result(request):
+    return render(request, 'pages/static_ui/result_page.html')
+def static_search(request):
+    return render(request, 'pages/static_ui/search_page.html')
 
 # index is function name
 def index(request):

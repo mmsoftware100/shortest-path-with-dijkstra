@@ -8,6 +8,10 @@ urlpatterns = [
     # second parameter is function name 
     path("", views.splash),
     path("home", views.static_home),
+    path("about", views.static_about),
+    path("places", views.static_places),
+    path("result", views.static_result),
+    path("search", views.static_search),
 
 
     path("index", views.index),

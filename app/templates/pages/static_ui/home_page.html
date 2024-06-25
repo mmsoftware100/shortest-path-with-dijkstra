@@ -32,7 +32,7 @@
         width: 100px;
       }
 
-      div.search_bar{
+      div.search_bar {
         width: 100%;
         background-color: transparent;
         display: flex;
@@ -47,7 +47,7 @@
         flex: 1;
       }
 
-      div.slide_show{
+      div.slide_show {
         display: flex;
         flex-direction: row;
         overflow-x: scroll;
@@ -56,7 +56,7 @@
         /* height: 50vh; */
       }
 
-      div.place{
+      div.place {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -67,7 +67,7 @@
         margin: 24px;
         cursor: pointer;
       }
-      div.place:hover{
+      div.place:hover {
         background-color: beige;
       }
       img.place_image {
@@ -75,21 +75,21 @@
         border-radius: 24px;
       }
 
-      div.footer{
+      div.footer {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
       }
-      div.nav{
+      div.nav {
         display: flex;
         flex-direction: column;
         align-items: center;
         border: 1px solid;
       }
-      img.icon{
+      img.icon {
         width: 72px;
       }
-      span.nav_title{
+      span.nav_title {
         padding: 16px;
       }
     </style>
@@ -113,73 +113,91 @@
         <!-- list of places, as slide show -->
 
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
         <div class="place">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">Place Name</span>
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">Place Name</span>
         </div>
       </div>
 
-      <br/>
-      <br/>
+      <br />
+      <br />
 
       <div class="footer">
         <!-- 4 main navigation section -->
         <div class="nav">
           <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
-          <span class="nav_title">Home</span>
+          <span class="nav_title"><a href="/home">Home</a></span>
         </div>
         <div class="nav">
           <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
-          <span class="nav_title">Search</span>
+          <span class="nav_title"><a href="/search">Search</a></span>
         </div>
         <div class="nav">
           <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
-          <span class="nav_title">Places</span>
+          <span class="nav_title"><a href="/places">Places</a></span>
         </div>
         <div class="nav">
           <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
-          <span class="nav_title">About</span>
+          <span class="nav_title"><a href="/about">About</a></span>
         </div>
       </div>
     </div>
 
     <script>
-        // add div.place on click listener for detail page
+      // add div.place on click listener for detail page
+      // Select all elements with the class 'place'
+      const places = document.querySelectorAll(".place");
+      // Iterate over each button and attach an event listener
+      places.forEach((place) => {
+        place.addEventListener("click", function () {
+          // alert(`You clicked ${this.textContent}`);
+          window.location.href = "/result"; // Replace with the URL of the next pag
+        });
+      });
+
+
+      const search_bars = document.querySelectorAll(".search_bar");
+      search_bars.forEach((search_bar) => {
+        search_bar.addEventListener("click", function () {
+          // alert(`You clicked ${this.textContent}`);
+          window.location.href = "/search"; // Replace with the URL of the next pag
+        });
+      });
     </script>
   </body>
 </html>
