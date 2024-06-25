@@ -7,6 +7,21 @@
 python manage.py runserver
 ```
 
+
+## 2024-06-25 Tue
+
+
+
+    """
+    path("about", views.about_page),
+    path("home", views.home_page),
+    path("places", views.places_page),
+    path("result", views.result_page),
+    path("search", views.search_page),
+    path("start", views.start_page),
+    """
+
+    
 ## 2024-05-20 Update
 
 

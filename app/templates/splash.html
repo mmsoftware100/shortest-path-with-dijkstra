@@ -15,7 +15,7 @@
         background-color: transparent;
       }
 
-      div.main{
+      div.main {
         display: flex;
         flex-direction: column;
         background-color: transparent;
@@ -24,14 +24,14 @@
         padding: 24px;
       }
 
-      div.logo{
+      div.logo {
         height: 80vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
 
-      div.info{
+      div.info {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -39,7 +39,7 @@
         background-color: transparent;
       }
 
-      img{
+      img {
         width: 100px;
       }
     </style>
@@ -62,7 +62,11 @@
     </div>
 
     <script>
-        
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          window.location.href = "/home"; // Replace with the URL of the next page
+        }, 3000);
+      });
     </script>
   </body>
 </html>

@@ -7,15 +7,11 @@ urlpatterns = [
     # first parameter is url path
     # second parameter is function name 
     path("", views.splash),
+    path("home", views.static_home),
+
+
     path("index", views.index),
     path("listing", views.listing),
     path("graph", views.graph),
     path("calculate", views.calculate),
-
-    path("about", views.about_page),
-    path("home", views.home_page),
-    path("places", views.places_page),
-    path("result", views.result_page),
-    path("search", views.search_page),
-    path("start", views.start_page),
 ]

@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        width: 100%;
+        background-color: transparent;
+      }
+      div.main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      div.heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        background-color: red;
+      }
+
+      img.heading_image {
+        width: 100px;
+      }
+
+      div.search_bar{
+        width: 100%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-input {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+        outline: none;
+        flex: 1;
+      }
+
+      div.slide_show{
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        width: 100%;
+        background-color: transparent;
+        /* height: 50vh; */
+      }
+
+      div.place{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        border: 1px solid grey;
+        border-radius: 24px;
+        padding: 24px;
+        margin: 24px;
+        cursor: pointer;
+      }
+      div.place:hover{
+        background-color: beige;
+      }
+      img.place_image {
+        width: 100px;
+        border-radius: 24px;
+      }
+
+      div.footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      div.nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid;
+      }
+      img.icon{
+        width: 72px;
+      }
+      span.nav_title{
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="heading">
+        <img class="heading_image" src="{% static 'images/major_logo.jpg' %}" />
+
+        <h2>Title</h2>
+
+        <img class="heading_image" src="{% static 'images/major_logo.jpg' %}" />
+      </div>
+
+      <div class="search_bar">
+        <!-- on click , go to search page -->
+        <input type="text" placeholder="Search..." class="search-input" />
+      </div>
+
+      <div class="slide_show">
+        <!-- list of places, as slide show -->
+
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+        <div class="place">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">Place Name</span>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <div class="footer">
+        <!-- 4 main navigation section -->
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title">Home</span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title">Search</span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title">Places</span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title">About</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        // add div.place on click listener for detail page
+    </script>
+  </body>
+</html>

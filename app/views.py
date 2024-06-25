@@ -12,6 +12,8 @@ def splash(request):
     # step 1.3 return content with HttpResponse
     # return HttpResponse("Hello World")
     return render(request, 'splash.html')
+def static_home(request):
+    return render(request, 'pages/static_ui/home_page.html')
 
 # index is function name
 def index(request):
