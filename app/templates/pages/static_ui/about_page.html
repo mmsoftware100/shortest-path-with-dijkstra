@@ -1,1 +1,157 @@
-about_page
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        width: 100%;
+        background-color: transparent;
+      }
+      div.main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      div.heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        background-color: transparent;
+      }
+
+      img.heading_image {
+        width: 100px;
+      }
+
+      div.search_bar {
+        width: 100%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-input {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+        outline: none;
+        flex: 1;
+      }
+
+      div.slide_show {
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        width: 100%;
+        background-color: transparent;
+        /* height: 50vh; */
+      }
+
+      div.place {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        border: 1px solid grey;
+        border-radius: 24px;
+        padding: 24px;
+        margin: 24px;
+        cursor: pointer;
+      }
+      div.place:hover {
+        background-color: beige;
+      }
+      img.place_image {
+        width: 100px;
+        border-radius: 24px;
+      }
+
+      div.footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      div.nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid;
+      }
+      img.icon {
+        width: 72px;
+      }
+      span.nav_title {
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="heading">
+        <div></div>
+
+        <img class="heading_image" src="{% static 'images/major_logo.jpg' %}" />
+
+        <div></div>
+      </div>
+
+      <h2>Pyin Oo Lwin</h2>
+
+      <p>Pyin Oo Lwin or Pyin U Lwin, formerly and colloquially referred to as Maymyo, is a scenic hill town in the Mandalay Region, Myanmar, some 67 kilometers east of Mandalay, and at an elevation of 1,070 metres. The town was estimated to have a population of around 255,000 in 2014</p>
+ 
+      <br />
+      <br />
+
+      <div class="footer">
+        <!-- 4 main navigation section -->
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/home">Home</a></span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/search">Search</a></span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/places">Places</a></span>
+        </div>
+        <div class="nav">
+          <img class="icon" src="{% static 'images/major_logo.jpg' %}" />
+          <span class="nav_title"><a href="/about">About</a></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // add div.place on click listener for detail page
+      // Select all elements with the class 'place'
+      const places = document.querySelectorAll(".place");
+      // Iterate over each button and attach an event listener
+      places.forEach((place) => {
+        place.addEventListener("click", function () {
+          // alert(`You clicked ${this.textContent}`);
+          window.location.href = "/result"; // Replace with the URL of the next pag
+        });
+      });
+
+
+      const search_bars = document.querySelectorAll(".search_bar");
+      search_bars.forEach((search_bar) => {
+        search_bar.addEventListener("click", function () {
+          // alert(`You clicked ${this.textContent}`);
+          window.location.href = "/search"; // Replace with the URL of the next pag
+        });
+      });
+    </script>
+  </body>
+</html>
