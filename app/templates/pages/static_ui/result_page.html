@@ -164,8 +164,9 @@
       // http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}
       // Add OpenStreetMap tiles
       // L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+      L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
         maxZoom: 19,
+        subdomains:['mt0','mt1','mt2','mt3']
       }).addTo(map);
 
       // Add the center marker
