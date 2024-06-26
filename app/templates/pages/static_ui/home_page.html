@@ -113,7 +113,7 @@
         <!-- list of places, as slide show -->
          <!-- loop here -->
          {% for place in places %}
-          <div class="place">
+          <div class="place" data-id="{{ place.id }}">
             <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
             <br />
             <span class="place_title">{{ place.name }}</span>
@@ -154,7 +154,10 @@
       places.forEach((place) => {
         place.addEventListener("click", function () {
           // alert(`You clicked ${this.textContent}`);
-          window.location.href = "/result"; // Replace with the URL of the next pag
+          // go with GET Parameter 
+          let id = place.dataset.id;
+          // alert(id);
+          window.location.href = "/result?id="+id; // Replace with the URL of the next pag
         });
       });
 

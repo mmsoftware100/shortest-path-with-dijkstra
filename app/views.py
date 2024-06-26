@@ -10,6 +10,10 @@ from .graph import graph
 from .links import links
 
 # step 1.2 create function with request parameter
+# Function to find a dictionary by id using list comprehension
+def find_dict_by_id(list_of_dicts, id):
+    result = [item for item in list_of_dicts if item['id'] == id]
+    return result[0] if result else None
 
 # index is function name
 def splash(request):
@@ -26,7 +30,29 @@ def static_about(request):
 def static_places(request):
     return render(request, 'pages/static_ui/places_page.html')
 def static_result(request):
-    return render(request, 'pages/static_ui/result_page.html')
+    # need to find nearest 3 points 
+    # pass center node and nearest 3 node
+    # Find dictionary with id 2
+
+    source_id = request.GET.get('id', 0)
+    center_place = find_dict_by_id(places, source_id)
+
+    dijkstra = Dijkstra(graph)
+    nearest_three_points = dijkstra.nearest_three_points(source=source_id)
+    nearest_three_places = []
+
+    # translate places
+    for id in nearest_three_points:
+        place = find_dict_by_id(places, id)
+        nearest_three_places.append(place)
+
+
+    context = {
+        'center_place': center_place,
+        'nearest_three_places': nearest_three_places
+    }
+
+    return render(request, 'pages/static_ui/result_page.html', context)
 def static_search(request):
     return render(request, 'pages/static_ui/search_page.html')
 

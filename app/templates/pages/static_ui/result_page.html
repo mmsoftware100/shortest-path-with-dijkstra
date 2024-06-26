@@ -158,7 +158,15 @@
       });
 
       // Initialize the map and set its view to the center point
-      var map = L.map("map").setView([40.7128, -74.006], 13); // Coordinates of New York City
+      // var map = L.map("map").setView([40.7128, -74.006], 13); // Coordinates of New York City
+      
+      let center_lat =  "{{ center_place.lat }}";
+      let center_lng = "{{ center_place.long }}";
+      let center_name = "{{ center_place.name }}";
+
+      //alert(center_lat);
+      //alert(center_lng);
+      var map = L.map("map").setView([ center_lat, center_lng], 13); // Coordinates of New York City
 
       // Google Street map
       // http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}
@@ -170,12 +178,17 @@
       }).addTo(map);
 
       // Add the center marker
-      var centerMarker = L.marker([40.7128, -74.006],{ icon: map_marker_icon }).addTo(map);
-      centerMarker.bindPopup("<b>Center Marker</b><br>New York City");
+      var centerMarker = L.marker([ center_lat, center_lng],
+        // [40.7128, -74.006],
+        { icon: map_marker_icon }).addTo(map);
+      centerMarker.bindPopup("<b>Center Marker</b><br>" + center_name);
 
       // Add the circle with a 3-mile radius
       var radiusInMeters = 3 * 1609.34; // 3 miles in meters
-      var circle = L.circle([40.7128, -74.006], {
+      var circle = L.circle(
+        // [40.7128, -74.006], 
+        [ center_lat, center_lng],
+        {
         color: "blue",
         fillColor: "blue",
         fillOpacity: 0.2,
