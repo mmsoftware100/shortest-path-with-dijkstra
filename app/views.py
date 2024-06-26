@@ -28,7 +28,10 @@ def static_home(request):
 def static_about(request):
     return render(request, 'pages/static_ui/about_page.html')
 def static_places(request):
-    return render(request, 'pages/static_ui/places_page.html')
+    context = {
+        'places': places
+    }
+    return render(request, 'pages/static_ui/places_page.html', context)
 def static_result(request):
     # need to find nearest 3 points 
     # pass center node and nearest 3 node
