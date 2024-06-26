@@ -16,6 +16,6 @@ urlpatterns = [
 
     path("index", views.index),
     path("listing", views.listing),
-    path("graph", views.graph),
+    path("graph", views.do_graph),
     path("calculate", views.calculate),
 ]
