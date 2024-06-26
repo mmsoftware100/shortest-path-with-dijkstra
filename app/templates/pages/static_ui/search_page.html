@@ -111,47 +111,15 @@
 
       <div class="slide_show">
         <!-- list of places, as slide show -->
-
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
-        <div class="place">
-          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-          <br />
-          <span class="place_title">Place Name</span>
-        </div>
+         <!-- list of places, as slide show -->
+         <!-- loop here -->
+         {% for place in places %}
+          <div class="place" data-id="{{ place.id }}">
+            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <br />
+            <span class="place_title">{{ place.name }}</span>
+          </div>
+          {% endfor %}
       </div>
 
       <br />
@@ -186,7 +154,9 @@
       places.forEach((place) => {
         place.addEventListener("click", function () {
           // alert(`You clicked ${this.textContent}`);
-          window.location.href = "/result"; // Replace with the URL of the next pag
+          let id = place.dataset.id;
+          // alert(id);
+          window.location.href = "/result?id="+id; // Replace with the URL of the next pag
         });
       });
 

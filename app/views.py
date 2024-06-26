@@ -54,7 +54,10 @@ def static_result(request):
 
     return render(request, 'pages/static_ui/result_page.html', context)
 def static_search(request):
-    return render(request, 'pages/static_ui/search_page.html')
+    context = {
+        'places': places
+    }
+    return render(request, 'pages/static_ui/search_page.html', context)
 
 # index is function name
 def index(request):
