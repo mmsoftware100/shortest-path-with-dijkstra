@@ -17,7 +17,10 @@ def splash(request):
     # return HttpResponse("Hello World")
     return render(request, 'splash.html')
 def static_home(request):
-    return render(request, 'pages/static_ui/home_page.html')
+    context = {
+        'places': places
+    }
+    return render(request, 'pages/static_ui/home_page.html', context)
 def static_about(request):
     return render(request, 'pages/static_ui/about_page.html')
 def static_places(request):
