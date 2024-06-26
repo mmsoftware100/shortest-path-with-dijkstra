@@ -106,20 +106,20 @@
 
       <div class="search_bar">
         <!-- on click , go to search page -->
-        <input type="text" placeholder="Search..." class="search-input" />
+        <input type="text" placeholder="Search..." class="search-input" id="search-input" />
       </div>
 
       <div class="slide_show">
         <!-- list of places, as slide show -->
-         <!-- list of places, as slide show -->
-         <!-- loop here -->
-         {% for place in places %}
-          <div class="place" data-id="{{ place.id }}">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
-            <br />
-            <span class="place_title">{{ place.name }}</span>
-          </div>
-          {% endfor %}
+        <!-- list of places, as slide show -->
+        <!-- loop here -->
+        {% for place in places %}
+        <div class="place" data-id="{{ place.id }}">
+          <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+          <br />
+          <span class="place_title">{{ place.name }}</span>
+        </div>
+        {% endfor %}
       </div>
 
       <br />
@@ -156,12 +156,24 @@
           // alert(`You clicked ${this.textContent}`);
           let id = place.dataset.id;
           // alert(id);
-          window.location.href = "/result?id="+id; // Replace with the URL of the next pag
+          window.location.href = "/result?id=" + id; // Replace with the URL of the next pag
         });
       });
 
+      const searchInput = document.getElementById('search-input');
+      // Add event listener for input change
+      searchInput.addEventListener("input", function () {
+        const searchText = this.value.toLowerCase(); // Get input value and convert to lowercase
 
-      
+        places.forEach((place) => {
+          const text = place.textContent.toLowerCase(); // Get item's text content and convert to lowercase
+          if (text.includes(searchText)) {
+            place.style.display = "flex"; // Show the item if it matches the search text
+          } else {
+            place.style.display = "none"; // Hide the item if it doesn't match
+          }
+        });
+      });
     </script>
   </body>
 </html>
