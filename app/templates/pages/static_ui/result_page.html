@@ -160,8 +160,11 @@
       // Initialize the map and set its view to the center point
       var map = L.map("map").setView([40.7128, -74.006], 13); // Coordinates of New York City
 
+      // Google Street map
+      // http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}
       // Add OpenStreetMap tiles
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      // L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
         maxZoom: 19,
       }).addTo(map);
 
