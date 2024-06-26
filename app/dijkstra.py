@@ -88,7 +88,7 @@ class Dijkstra:
         # Filter points with distance less than 2
         # radius ကို ပြင်ချင်ရင် ဒီ ဂဏန်းကို ပြင်ပါ။
         # min_distance = 2
-        min_distance = 3 * 1609.34 #  3 miles in meters
+        min_distance = 3 * 1609.34 # 3 miles in meters
         filtered_distances = {point: distance for point, distance in distances.items() if distance < min_distance and point != source}
         # Sort the points by distance
         sorted_distances = sorted(filtered_distances.items(), key=lambda item: item[1])

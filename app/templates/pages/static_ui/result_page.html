@@ -196,7 +196,20 @@
       }).addTo(map);
 
       // Coordinates for additional markers within the 3-mile radius
+
+
+      // let nearest_three_places = "{{ nearest_three_places }}";
+      // Convert Python list of dictionaries to JavaScript array of objects
+      var nearest_three_places = [
+            {% for place in nearest_three_places %}
+                { id: "{{ place.id }}",name: "{{ place.name }}", lat: {{ place.lat }}, long: {{ place.long }} },
+            {% endfor %}
+      ];
+      console.log(nearest_three_places);
+
+      // alert(nearest_three_places);
       var additionalMarkers = [
+        /*
         {
           coords: [40.7308, -73.9973],
           info: "Marker 1 Info: Near Washington Square Park",
@@ -209,7 +222,16 @@
           coords: [40.6892, -74.0445],
           info: "Marker 3 Info: Near Statue of Liberty",
         }, // Marker 3
+        */
       ];
+
+      nearest_three_places.forEach(function(place) {
+            // console.log(person.name + " - " + person.age);
+            additionalMarkers.push({
+              coords: [place.lat, place.long],
+              info: place.name
+            });
+        });
 
       // Add the additional markers to the map with click events to show info popups
       additionalMarkers.forEach(function (markerData, index) {
