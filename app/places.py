@@ -1,4 +1,7 @@
 places = [
+    # ဒီနေရာမှာ Place တိုးရန်။
+    {"id": "100", "name": "စမ်းသပ်နေရာ (၁)", "cat_id": "1",
+        "lat": "21.975169", "long": "96.405830", "image_url" : "test.png"},
     {"id": "1", "name": "Kyakt Taung Pagoda", "cat_id": "1",
         "lat": "22.014296", "long": "96.447091", "image_url" : "test.png"},
     {"id": "2", "name": "Police Station", "cat_id": "8",

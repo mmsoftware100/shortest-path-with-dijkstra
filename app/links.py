@@ -1,4 +1,7 @@
 links = [
+    # ဒီနေရာမှာ Link တိုးရန် တိုးရန်။
+    # ဉပမာ node1: 1 means Kyakt Taung Pagoda , node2: 100 means စမ်းသပ်နေရာ (၁), distance: 1000 မီတာ အကွာအဝေး
+    {"id": "100", "node1": "1", "node2": "100", "distance": "1000"},
     {"id": "1", "node1": "1", "node2": "2", "distance": "410"},
     {"id": "2", "node1": "1", "node2": "8", "distance": "1755"},
     {"id": "3", "node1": "2", "node2": "3", "distance": "455"},
