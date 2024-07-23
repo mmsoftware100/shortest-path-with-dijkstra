@@ -184,7 +184,8 @@
       centerMarker.bindPopup("<b>Center Marker</b><br>" + center_name);
 
       // Add the circle with a 3-mile radius
-      var radiusInMeters = 3 * 1609.34; // 3 miles in meters
+      // ပုံမှာ ပြောင်းဖို့အတွက် ဒီ Line မှာ ပြင်ပါ။
+      var radiusInMeters = 1.5 * 1609.34; // 1.5 miles in meters
       var circle = L.circle(
         // [40.7128, -74.006], 
         [ center_lat, center_lng],
