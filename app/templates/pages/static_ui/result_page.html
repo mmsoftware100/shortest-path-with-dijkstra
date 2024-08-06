@@ -135,6 +135,7 @@
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/leaflet.js' %}"></script>
     <script src="{% static 'js/jquery.loadingModal.min.js' %}"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script>
       // add div.place on click listener for detail page
       // Select all elements with the class 'place'
@@ -232,7 +233,27 @@
               coords: [place.lat, place.long],
               info: place.name
             });
-        });
+
+
+            // Define coordinates for Point A and Point B
+            const pointA = L.latLng(center_lat, center_lng); // Example coordinates (London)
+            const pointB = L.latLng(place.lat, place.long);  // Example coordinates (London)
+            // Use Leaflet Routing Machine to find and display the shortest path from Point A to Point B
+            L.Routing.control({
+                waypoints: [pointA, pointB],
+                routeWhileDragging: true,
+                showAlternatives: true,
+                altLineOptions: { styles: [{ color: 'black', opacity: 0.15, weight: 9 }] },
+                createMarker: function(i, waypoint, n) {
+                    var markerOptions = {
+                        draggable: true
+                    };
+                    return L.marker(waypoint.latLng, markerOptions)
+                        .bindPopup(i === 0 ? 'Point A' : i === n - 1 ? 'Point B' : `Waypoint ${i + 1}`);
+                }
+            }).addTo(map);
+
+      });
 
       // Add the additional markers to the map with click events to show info popups
       additionalMarkers.forEach(function (markerData, index) {
