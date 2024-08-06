@@ -244,6 +244,7 @@
                 routeWhileDragging: true,
                 showAlternatives: true,
                 altLineOptions: { styles: [{ color: 'black', opacity: 0.15, weight: 9 }] },
+                /*
                 createMarker: function(i, waypoint, n) {
                     var markerOptions = {
                         draggable: true
@@ -251,6 +252,7 @@
                     return L.marker(waypoint.latLng, markerOptions)
                         .bindPopup(i === 0 ? 'Point A' : i === n - 1 ? 'Point B' : `Waypoint ${i + 1}`);
                 }
+                        */
             }).addTo(map);
 
       });
