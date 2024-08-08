@@ -114,7 +114,7 @@
          <!-- loop here -->
          {% for place in places %}
           <div class="place" data-id="{{ place.id }}">
-            <img class="place_image" src="{% static 'images/major_logo.jpg' %}" />
+            <img class="place_image" src="{{ place.image_url }}" />
             <br />
             <span class="place_title">{{ place.name }}</span>
           </div>

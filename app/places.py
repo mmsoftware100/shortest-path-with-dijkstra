@@ -1,9 +1,9 @@
 places = [
     # ဒီနေရာမှာ Place တိုးရန်။
     {"id": "100", "name": "စမ်းသပ်နေရာ (၁)", "cat_id": "1",
-        "lat": "21.975169", "long": "96.405830", "image_url" : "test.png"},
+        "lat": "21.975169", "long": "96.405830", "image_url" : "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Pyinoolwin_--_Downtown.JPG/1280px-Pyinoolwin_--_Downtown.JPG"},
     {"id": "1", "name": "Kyakt Taung Pagoda", "cat_id": "1",
-        "lat": "22.014296", "long": "96.447091", "image_url" : "test.png"},
+        "lat": "22.014296", "long": "96.447091", "image_url" : "https://static.wixstatic.com/media/750715_2ba3b08140b04eabba1242f611b936c5~mv2_d_1365_2048_s_2.jpg/v1/fill/w_242,h_241,fp_0.50_0.50,q_90/750715_2ba3b08140b04eabba1242f611b936c5~mv2_d_1365_2048_s_2.webp"},
     {"id": "2", "name": "Police Station", "cat_id": "8",
         "lat": "22.014722", "long": "96.450895"},
     {"id": "3", "name": "Famous Hotel", "cat_id": "2",
