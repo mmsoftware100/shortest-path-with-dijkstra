@@ -100,7 +100,7 @@
       }
 
       #map {
-        height: 800px;
+        height: 500px;
       }
       .leaflet-top, .leaflet-right {
         display: none;
@@ -263,6 +263,9 @@
           const pointB = L.latLng(place.lat, place.long);  
 
           // Use Leaflet Routing Machine to find and display the shortest path from Point A to Point B
+          let color = 'blue';
+          if(index !=  0 ) color = 'red';
+          
           var control = L.Routing.control({
               waypoints: [pointA, pointB],
               routeWhileDragging: true,
@@ -271,7 +274,7 @@
               createMarker: function() { return null; }, // Disable markers
               routeLine: function(route) {
                   return L.Routing.line(route, {
-                      styles: [{ color: 'blue', opacity: 0.7, weight: 5 }]
+                      styles: [{ color: color, opacity: 0.7, weight: 5 }]
                   });
               }
           }).addTo(map);
