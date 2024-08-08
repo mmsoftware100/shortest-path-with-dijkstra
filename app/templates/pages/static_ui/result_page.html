@@ -102,6 +102,16 @@
       #map {
         height: 800px;
       }
+      .leaflet-top, .leaflet-right {
+        display: none;
+      }
+
+      #result_found{
+        display: none;
+      }
+      #result_not_found{
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -110,6 +120,15 @@
         <!-- map along with 4 markers -->
         <div id="map"></div>
       </div>
+
+      <span id="result_found">
+        “Recommendation for nearest point of interest”
+        <span id="place_name">...</span> is the nearest place to you, located just <span id="place_distance">...</span> miles away. You should visit there first.
+      </span>
+      <span id="result_not_found">
+        “Recommendation for nearest point of interest”
+        Sorry, there’s no nearest place I can recommend to you.
+      </span>
 
       <div class="footer">
         <!-- 4 main navigation section -->
@@ -226,36 +245,113 @@
         }, // Marker 3
         */
       ];
+ 
+      let i = 0;
+      let name = "";
+      let firstPlaceDistance = ""; 
 
-      nearest_three_places.forEach(function(place) {
-            // console.log(person.name + " - " + person.age);
-            additionalMarkers.push({
+      nearest_three_places.forEach(function(place, index) {
+          additionalMarkers.push({
               coords: [place.lat, place.long],
               info: place.name
-            });
+          });
 
+          if(index == 0) name = place.name;
 
-            // Define coordinates for Point A and Point B
-            const pointA = L.latLng(center_lat, center_lng); // Example coordinates (London)
-            const pointB = L.latLng(place.lat, place.long);  // Example coordinates (London)
-            // Use Leaflet Routing Machine to find and display the shortest path from Point A to Point B
-            L.Routing.control({
-                waypoints: [pointA, pointB],
-                routeWhileDragging: true,
-                showAlternatives: true,
-                altLineOptions: { styles: [{ color: 'black', opacity: 0.15, weight: 9 }] },
-                /*
-                createMarker: function(i, waypoint, n) {
-                    var markerOptions = {
-                        draggable: true
-                    };
-                    return L.marker(waypoint.latLng, markerOptions)
-                        .bindPopup(i === 0 ? 'Point A' : i === n - 1 ? 'Point B' : `Waypoint ${i + 1}`);
-                }
-                        */
-            }).addTo(map);
+          // Define coordinates for Point A and Point B
+          const pointA = L.latLng(center_lat, center_lng); 
+          const pointB = L.latLng(place.lat, place.long);  
+
+          // Use Leaflet Routing Machine to find and display the shortest path from Point A to Point B
+          var control = L.Routing.control({
+              waypoints: [pointA, pointB],
+              routeWhileDragging: true,
+              showAlternatives: true,
+              altLineOptions: { styles: [{ color: 'black', opacity: 0.15, weight: 9 }] },
+              createMarker: function() { return null; }, // Disable markers
+              routeLine: function(route) {
+                  return L.Routing.line(route, {
+                      styles: [{ color: 'blue', opacity: 0.7, weight: 5 }]
+                  });
+              }
+          }).addTo(map);
+
+          // Closure to capture the correct index
+          control.on('routesfound', (function(index) {
+              return function(e) {
+                  var routes = e.routes;
+                  var summary = routes[0].summary; // Access the first route
+                  var distance = summary.totalDistance; // Distance in meters
+                  var time = summary.totalTime; // Time in seconds
+
+                  console.log("index " + index);
+                  console.log('Distance: ' + (distance / 1000).toFixed(2) + ' km'); // Convert to km
+                  console.log('Estimated time: ' + (time / 60).toFixed(2) + ' minutes'); // Convert to minutes
+
+                  // If this is the first place, store the distance
+                  if (index == 0) {
+                      firstPlaceDistance = (distance / 1000).toFixed(2) + ' km';
+                      console.log('First place distance: ' + firstPlaceDistance);
+                      $('#place_distance').text((distance * 0.000621371).toFixed(2));
+                  }
+              };
+          })(index));
 
       });
+
+      
+      // nearest_three_places.forEach(function(place) {
+      //       additionalMarkers.push({
+      //         coords: [place.lat, place.long],
+      //         info: place.name
+      //       });
+
+
+      //       if(i == 0){
+      //         name = place.name;
+      //       }
+      //       i++;
+      //       // Define coordinates for Point A and Point B
+      //       const pointA = L.latLng(center_lat, center_lng); // Example coordinates (London)
+      //       const pointB = L.latLng(place.lat, place.long);  // Example coordinates (London)
+      //       // Use Leaflet Routing Machine to find and display the shortest path from Point A to Point B
+      //       var control = L.Routing.control({
+      //           waypoints: [pointA, pointB],
+      //           routeWhileDragging: true,
+      //           showAlternatives: true,
+      //           altLineOptions: { styles: [{ color: 'black', opacity: 0.15, weight: 9 }] },
+      //           createMarker: function() { return null; }, // Disable markers
+      //           routeLine: function(route) {
+      //               return L.Routing.line(route, {
+      //                   styles: [{ color: 'blue', opacity: 0.7, weight: 5 }]
+      //               });
+      //           }
+      //       }).addTo(map);
+
+      //       control.on('routesfound', function(e) {
+      //           var routes = e.routes;
+      //           var summary = routes[0].summary; // Access the first route
+      //           var distance = summary.totalDistance; // Distance in meters
+      //           var time = summary.totalTime; // Time in seconds
+
+      //           console.log('Distance: ' + (distance / 1000).toFixed(2) + ' km'); // Convert to km
+      //           console.log('Estimated time: ' + (time / 60).toFixed(2) + ' minutes'); // Convert to minutes
+
+      //           // If this is the first place, store the distance
+      //           if (i == 0) {
+      //               firstPlaceDistance = (distance / 1000).toFixed(2) + ' km';
+      //               console.log('First place distance: ' + firstPlaceDistance);
+      //           }
+      //       });
+      // });
+
+      if(nearest_three_places.length == 0){
+        $('#result_not_found').show();
+      }
+      else{
+        $('#result_found').show();
+        $('#place_name').text(name);
+      }
 
       // Add the additional markers to the map with click events to show info popups
       additionalMarkers.forEach(function (markerData, index) {
